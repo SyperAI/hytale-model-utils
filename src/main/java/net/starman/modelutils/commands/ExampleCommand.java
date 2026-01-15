@@ -2,28 +2,47 @@ package net.starman.modelutils.commands;
 
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
+import com.hypixel.hytale.protocol.PlayerSkin;
 import com.hypixel.hytale.server.core.Message;
+import com.hypixel.hytale.server.core.asset.type.model.config.Model;
+import com.hypixel.hytale.server.core.asset.type.model.config.ModelAsset;
 import com.hypixel.hytale.server.core.command.system.CommandContext;
+import com.hypixel.hytale.server.core.command.system.arguments.system.RequiredArg;
+import com.hypixel.hytale.server.core.command.system.arguments.types.ArgTypes;
 import com.hypixel.hytale.server.core.command.system.basecommands.AbstractPlayerCommand;
-import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
+import net.starman.modelutils.utils.ModelHelper;
 
 import javax.annotation.Nonnull;
-import java.awt.*;
 
 public class ExampleCommand extends AbstractPlayerCommand {
+    private final RequiredArg<String> modelArg;
 
     public ExampleCommand() {
         super("test", "Super test command!");
+
+        modelArg = withRequiredArg("model", "Model", ArgTypes.STRING);
+    }
+
+    @Override
+    protected boolean canGeneratePermission() {
+        return false;  // Anyone can use this command
     }
 
     @Override
     protected void execute(@Nonnull CommandContext commandContext, @Nonnull Store<EntityStore> store, @Nonnull Ref<EntityStore> ref, @Nonnull PlayerRef playerRef, @Nonnull World world) {
-        Player player = store.getComponent(ref, Player.getComponentType());
+        ModelAsset modelAsset = ModelAsset.getAssetMap().getAsset(modelArg.get(commandContext));
+        if (modelAsset == null) {
+            commandContext.sender().sendMessage(Message.raw("Error: Model not found"));
+            return;
+        }
 
-        player.sendMessage(Message.raw("You have been poisoned!").color(Color.GREEN).bold(true));
+        PlayerSkin playerSkin = new PlayerSkin();
+        playerSkin.cape = "Cape_Void_Hero.Blue.NoNeck";
+
+        ModelHelper.applySkin(Model.createUnitScaleModel(modelAsset), playerSkin, ref);
     }
 
 }

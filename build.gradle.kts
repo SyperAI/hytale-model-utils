@@ -21,6 +21,9 @@ tasks.test {
 }
 
 
+// Tasks for starting server after build
+// If you want to use it you need to change paths to your server installation
+// TODO: Automatically download server
 val pluginJar = tasks.named("build")
 tasks.register<Copy>("copyPluginToServer") {
     dependsOn(pluginJar)
@@ -35,5 +38,5 @@ tasks.register<Exec>("runServer") {
     dependsOn("copyPluginToServer")
 
     workingDir = file(layout.buildDirectory.dir("Server\\Server"))
-    commandLine("java", "-jar", layout.projectDirectory.dir("libs/HytaleServer.jar"), "--assets", "../Assets.zip")
+    commandLine("java", "-jar", layout.projectDirectory.dir("libs/HytaleServer.jar"), "--assets", "../Assets.zip", "--allow-op")
 }

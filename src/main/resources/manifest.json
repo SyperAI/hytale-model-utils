@@ -2,7 +2,7 @@
   "Group": "net.starman",
   "Name": "Model Utils",
   "Version": "1.0",
-  "Description": "Test example plugin",
+  "Description": "Plugin that provides utilities to simplify working with models through plugin",
   "Authors": [
     {
       "Name": "_StarMan_"
@@ -16,5 +16,5 @@
   },
   "DisabledByDefault": false,
   "Main": "net.starman.modelutils.ModelUtilsPlugin",
-  "IncludesAssetPack": true
+  "IncludesAssetPack": false
 }
