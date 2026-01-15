@@ -1,0 +1,20 @@
+{
+  "Group": "net.starman",
+  "Name": "Model Utils",
+  "Version": "1.0",
+  "Description": "Test example plugin",
+  "Authors": [
+    {
+      "Name": "_StarMan_"
+    }
+  ],
+  "Website": "",
+  "ServerVersion": "*",
+  "Dependencies": {
+  },
+  "OptionalDependencies": {
+  },
+  "DisabledByDefault": false,
+  "Main": "net.starman.modelutils.ModelUtilsPlugin",
+  "IncludesAssetPack": true
+}
