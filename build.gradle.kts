@@ -34,6 +34,6 @@ tasks.register<Copy>("copyPluginToServer") {
 tasks.register<Exec>("runServer") {
     dependsOn("copyPluginToServer")
 
-//    workingDir = file(layout.buildDirectory.dir("Server\\Server\\mods"))
-//    commandLine("java", "-jar", "..\\Server\\HytaleServer.jar", "--assets", "..\\Assets.zip")
+    workingDir = file(layout.buildDirectory.dir("Server\\Server"))
+    commandLine("java", "-jar", layout.projectDirectory.dir("libs/HytaleServer.jar"), "--assets", "../Assets.zip")
 }
