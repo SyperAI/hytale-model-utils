@@ -1,6 +1,7 @@
 package net.starman.modelutils.utils;
 
 
+import com.hypixel.hytale.component.CommandBuffer;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.protocol.PlayerSkin;
 import com.hypixel.hytale.server.core.asset.type.model.config.Model;
@@ -41,7 +42,14 @@ public class ModelHelper {
     public static void applySkin(Model model, PlayerSkin skin, Ref<EntityStore> ref) {
         var skinnedModel = applySkin(model, skin);
 
+
         var store = ref.getStore();
         store.replaceComponent(ref, ModelComponent.getComponentType(), new ModelComponent(skinnedModel));
+    }
+
+    public static void applySkin(Model model, PlayerSkin skin, Ref<EntityStore> ref, CommandBuffer<EntityStore> buf) {
+        var skinnedModel = applySkin(model, skin);
+
+        buf.replaceComponent(ref, ModelComponent.getComponentType(), new ModelComponent(skinnedModel));
     }
 }

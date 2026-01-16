@@ -1,5 +1,6 @@
 package net.starman.modelutils.commands;
 
+import com.hypixel.hytale.component.CommandBuffer;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.protocol.PlayerSkin;
@@ -10,6 +11,7 @@ import com.hypixel.hytale.server.core.command.system.CommandContext;
 import com.hypixel.hytale.server.core.command.system.arguments.system.RequiredArg;
 import com.hypixel.hytale.server.core.command.system.arguments.types.ArgTypes;
 import com.hypixel.hytale.server.core.command.system.basecommands.AbstractPlayerCommand;
+import com.hypixel.hytale.server.core.modules.entity.player.PlayerSkinComponent;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
@@ -39,10 +41,9 @@ public class ExampleCommand extends AbstractPlayerCommand {
             return;
         }
 
-        PlayerSkin playerSkin = new PlayerSkin();
-        playerSkin.cape = "Cape_Void_Hero.Blue.NoNeck";
+        PlayerSkinComponent playerSkinComponent = store.getComponent(ref, PlayerSkinComponent.getComponentType());
 
-        ModelHelper.applySkin(Model.createUnitScaleModel(modelAsset), playerSkin, ref);
+        ModelHelper.applySkin(Model.createUnitScaleModel(modelAsset), playerSkinComponent.getPlayerSkin(), ref);
     }
 
 }

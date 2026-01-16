@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "net.starman"
-version = "1.0-SNAPSHOT"
+version = "1.0-SNAPSHOT-pre.1"
 
 repositories {
     mavenCentral()
