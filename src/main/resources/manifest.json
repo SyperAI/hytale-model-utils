@@ -1,7 +1,7 @@
 {
   "Group": "net.starman",
   "Name": "Model Utils",
-  "Version": "1.0.0.1",
+  "Version": "1.0.1",
   "Description": "Plugin that provides utilities to simplify working with models through plugin",
   "Authors": [
     {
